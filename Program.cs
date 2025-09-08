@@ -16,16 +16,16 @@ class Program
             switch (choice)
             {
                 case 1:
-                    TemporaryMethod();
+                    AddNewPetOwner();
                     break;
                 case 2:
-                    TemporaryMethod();
+                    AddNewPet();
                     break;
                 case 3:
-                    TemporaryMethod();
+                    UpdatePetOwnerPhoneNumber();
                     break;
                 case 4:
-                    TemporaryMethod();
+                    SearchOwnerPhoneNumberByPetName();
                     break;
                 case 5:
                     return;
@@ -37,8 +37,35 @@ class Program
             }
         }
     }
+    /* Method for testing UI, if this was real app, this would be deleted before submission.
     static void TemporaryMethod()
     {
         Console.WriteLine("Temporary method");
+    }*/
+    static void AddNewPetOwner()
+    {
+        Console.WriteLine("Give pet owner's name:");
+        string? name = Console.ReadLine();
+        Console.WriteLine("Give pet owner's phone number:");
+        string? phoneNumber = Console.ReadLine();
+    }
+    static void AddNewPet()
+    {
+        Console.WriteLine("Give pet's name:");
+        string? petName = Console.ReadLine();
+        Console.WriteLine("Give pet owner's ID");
+        int ownerId = Convert.ToInt32(Console.ReadLine());
+    }
+    static void UpdatePetOwnerPhoneNumber()
+    {
+        Console.WriteLine("Give pet owner's ID");
+        int ownerId = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Give new phone number");
+        string? newPhoneNumber = Console.ReadLine();
+    }
+    static void SearchOwnerPhoneNumberByPetName()
+    {
+        Console.WriteLine("Give pet's name");
+        string? petName = Console.ReadLine();
     }
 }
