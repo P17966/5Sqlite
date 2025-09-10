@@ -2,8 +2,11 @@
 
 class Program
 {
+    // static siksi, että kaikki methodit pääsevät käsiksi tähän.
+    static PetsDB petsDB = new PetsDB();
     static void Main(string[] args)
     {
+
         while (true)
         {
             Console.WriteLine("Select an option using number without . in the end:");
@@ -48,6 +51,12 @@ class Program
         string? name = Console.ReadLine();
         Console.WriteLine("Give pet owner's phone number:");
         string? phoneNumber = Console.ReadLine();
+        if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(phoneNumber))
+        {
+            Console.WriteLine("Name or phone number cannot be empty");
+            return;
+        }
+        petsDB.AddOwner(name, phoneNumber);
     }
     static void AddNewPet()
     {
@@ -55,6 +64,12 @@ class Program
         string? petName = Console.ReadLine();
         Console.WriteLine("Give pet owner's ID");
         int ownerId = Convert.ToInt32(Console.ReadLine());
+        if (string.IsNullOrEmpty(petName))
+        {
+            Console.WriteLine("Pet's name cannot be empty");
+            return;
+        }
+        petsDB.AddPet(petName, ownerId);
     }
     static void UpdatePetOwnerPhoneNumber()
     {
@@ -62,10 +77,30 @@ class Program
         int ownerId = Convert.ToInt32(Console.ReadLine());
         Console.WriteLine("Give new phone number");
         string? newPhoneNumber = Console.ReadLine();
+        if (string.IsNullOrEmpty(newPhoneNumber))
+        {
+            Console.WriteLine("New phone number cannot be empty");
+            return;
+        }
+        petsDB.UpdateOwnerPhoneNumber(ownerId, newPhoneNumber);
     }
     static void SearchOwnerPhoneNumberByPetName()
     {
         Console.WriteLine("Give pet's name");
         string? petName = Console.ReadLine();
+        if (string.IsNullOrEmpty(petName))
+        {
+            Console.WriteLine("Pet's name cannot be empty");
+            return;
+        }
+        string? phoneNumber = petsDB.SearchOwnerPhoneNumberByPetName(petName);
+        if (phoneNumber == null)
+        {
+            Console.WriteLine("No owner found for the given pet name");
+        }
+        else
+        {
+            Console.WriteLine($"Owner's phone number is: {phoneNumber}");
+        }
     }
 }
