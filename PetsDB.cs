@@ -13,10 +13,12 @@ public class PetsDB
         {
             connection.Open();
             // Luodaan taulu, jos sitä ei ole
-            var commandForCreateTable = connection.CreateCommand();
-            commandForCreateTable.CommandText = "CREATE TABLE IF NOT EXISTS Owners (id INTEGER PRIMARY KEY, name TEXT, phonenumber TEXT);";
-            commandForCreateTable.CommandText = "CREATE TABLE IF NOT EXISTS Pets (id INTEGER PRIMARY KEY, name TEXT, onwersid INTEGER, FOREIGN KEY(ownerid) REFERENCES Owners(id));";
-            commandForCreateTable.ExecuteNonQuery();
+            var commandForCreateTable1 = connection.CreateCommand();
+            commandForCreateTable1.CommandText = "CREATE TABLE IF NOT EXISTS Owners (id INTEGER PRIMARY KEY, name TEXT, phonenumber TEXT);";
+            commandForCreateTable1.ExecuteNonQuery();
+            var commandForCreateTable2 = connection.CreateCommand();
+            commandForCreateTable2.CommandText = "CREATE TABLE IF NOT EXISTS Pets (id INTEGER PRIMARY KEY, name TEXT, ownerid INTEGER);";
+            commandForCreateTable2.ExecuteNonQuery();
         }
     }
     public void AddOwner(string name, string phonenumber)
